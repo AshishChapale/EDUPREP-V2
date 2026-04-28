@@ -135,7 +135,9 @@ app.post('/api/generate', async (req, res) => {
     res.status(500).json({ error: "Failed to generate content." });
   }
 });
-
+app.get('/', (req, res) => {
+  res.send("EduPrep Server is running!");
+});
 // This is the crucial part that keeps the server awake!
 app.listen(PORT, () => {
   console.log(`EduPrep Advanced Backend running securely on http://localhost:${PORT}`);
