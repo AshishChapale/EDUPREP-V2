@@ -11,6 +11,9 @@ const PORT = process.env.PORT || 5005;
 
 app.use(cors());
 app.use(express.json());
+app.get('/api/test', (req, res) => {
+  res.json({ message: "✅ Backend is alive and reaching /api route!" });
+});
 
 // --- CONNECT TO MONGODB ---
 mongoose.connect(process.env.MONGO_URI)
@@ -92,7 +95,7 @@ app.post('/api/generate', async (req, res) => {
     }
 
     console.log(`Generating ${count} advanced questions for ${subject}...`);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const prompt = `Act as an expert engineering professor. Based on the provided notes, generate EXACTLY ${count || 10} multiple-choice questions. 
 
