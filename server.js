@@ -9,11 +9,12 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5005;
 
-app.use(cors());
-app.use(express.json());
-app.get('/api/test', (req, res) => {
-  res.json({ message: "✅ Backend is alive and reaching /api route!" });
-});
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://eduprep-frontend-zx9t.vercel.app'],
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
+
 
 // --- CONNECT TO MONGODB ---
 mongoose.connect(process.env.MONGO_URI)
